@@ -31,6 +31,15 @@ $(function() {
 				expect(feed.name.length).not.toBe(0);
 			}
 		});
+
+    /* Tests that when you click on the menu icon
+     * all entires in allFeeds are available in
+     * the feed-list.
+     */
+     it('all entries are visible', function() {
+       var lenFeedList = $('.feed-list').children().length;
+       expect(allFeeds.length).toBe(lenFeedList);
+     });
 	});
 
 
@@ -59,6 +68,17 @@ $(function() {
 			$('.menu-icon-link').click();
 			expect(isMenuHidden()).toBe(true);
 		});
+
+    /* Test that ensures that the menu hides when
+     * you click on a feed item.
+     */
+    it('hides after clicking on a feed item', function() {
+      expect(isMenuHidden()).toBe(true);
+      $('.menu-icon-link').click();
+      expect(isMenuHidden()).toBe(false);
+      $('ul.feed-list li:first-child a').click();
+      expect(isMenuHidden()).toBe(true);
+    });
 	});
 
 
@@ -100,5 +120,7 @@ $(function() {
 			done();
 		});
 	});
+
+
 
 }());
