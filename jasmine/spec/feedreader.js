@@ -1,7 +1,11 @@
 $(function() {
+
+  /* Tests functionality related to RSS feeds
+   */
 	describe('RSS Feeds', function() {
 
-		/* Tests to make sure that the allFeeds variable has been defined and that it is not empty.
+		/* Tests to make sure that the allFeeds variable
+     * has been defined and that it is not empty.
 		 */
 		it('are defined', function() {
 			expect(allFeeds).toBeDefined();
@@ -12,7 +16,7 @@ $(function() {
 		 * In the allFeeds object it ensures it has a URL defined
 		 * and that the URL is not empty.
 		 */
-		it('each feed has a URL', function() {
+		it('have URLs', function() {
 			for (i = 0; i < allFeeds.length; i++) {
 				var feed = allFeeds[i];
 				expect(feed.url).toBeDefined();
@@ -24,7 +28,7 @@ $(function() {
 		 * In the allFeeds object it ensures it has a name defined
 		 * and that the name is not empty.
 		 */
-		it('each feed has a name', function() {
+		it('each has a name', function() {
 			for (i = 0; i < allFeeds.length; i++) {
 				var feed = allFeeds[i];
 				expect(feed.name).toBeDefined();
@@ -36,16 +40,18 @@ $(function() {
      * all entires in allFeeds are available in
      * the feed-list.
      */
-     it('all entries are visible', function() {
+     it('entries match the number of entries in the menu', function() {
        var lenFeedList = $('.feed-list').children().length;
        expect(allFeeds.length).toBe(lenFeedList);
      });
 	});
 
 
-	/* Test suite named "The menu" */
+	/* Tests functionality related the menu
+   */
 	describe('The menu', function() {
-		var isMenuHidden = function() {
+
+    var isMenuHidden = function() {
 			return $('body').hasClass('menu-hidden');
 		};
 
@@ -61,7 +67,7 @@ $(function() {
 		 * Checks whether the menu displays when
 		 * clicked and does it hide when clicked again.
 		 */
-		it('menu changes visibility when menu icon is clicked', function() {
+		it('changes visibility when menu icon is clicked', function() {
 			expect(isMenuHidden()).toBe(true);
 			$('.menu-icon-link').click();
 			expect(isMenuHidden()).toBe(false);
@@ -72,7 +78,7 @@ $(function() {
     /* Test that ensures that the menu hides when
      * you click on a feed item.
      */
-    it('hides after clicking on a feed item', function() {
+    it('hides after a feed item is clicked', function() {
       expect(isMenuHidden()).toBe(true);
       $('.menu-icon-link').click();
       expect(isMenuHidden()).toBe(false);
@@ -82,12 +88,10 @@ $(function() {
 	});
 
 
-	/* Test suite named "Initial Entries" */
-	/* Test ensures when the loadFeed
-	 * function is called and completes its work, there is at least
-	 * a single .entry element within the .feed container.
-	 * loadFeed() is asynchronous.
-	 */
+
+
+  /* Tests the initial state.
+   */
 	describe('Initial Entries', function() {
 		beforeEach(function(done) {
 			loadFeed(0, function() {
@@ -95,13 +99,19 @@ $(function() {
 			});
 		});
 
-		it('at least single .entry element within .feed container', function(done) {
+    /* Test ensures when the loadFeed
+  	 * function is called and completes its work, there is at least
+  	 * a single .entry element within the .feed container.
+  	 * loadFeed() is asynchronous.
+  	 */
+		it('at least has a single .entry element within .feed container', function(done) {
 			expect($('.feed').find('.entry').length).toBeGreaterThan(0);
 			done();
 		});
 	});
 
-	/* Test suite named "New Feed Selection"*/
+	/* Tests the funcionality related to the new feed selection
+   */
 	describe('New Feed Selection', function() {
 		var content = $('.feed').text();
 
@@ -110,6 +120,7 @@ $(function() {
 				done();
 			});
 		});
+
   /* Test ensures when a new feed is loaded
  	 * by the loadFeed function that the content actually changes.
  	 * Remember, loadFeed() is asynchronous.
@@ -120,7 +131,4 @@ $(function() {
 			done();
 		});
 	});
-
-
-
 }());
