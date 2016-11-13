@@ -93,9 +93,7 @@ $(function() {
   describe('Initial Entries', function() {
 
     beforeEach(function(done) {
-      loadFeed(0, function() {
-        done();
-      });
+      loadFeed(0, done);
     });
 
     /* Test ensures when the loadFeed
@@ -103,9 +101,8 @@ $(function() {
      * a single .entry element within the .feed container.
      * loadFeed() is asynchronous.
      */
-    it('at least has a single .entry element within .feed container', function(done) {
-      expect($('.feed').find('.entry').length).toBeGreaterThan(0);
-      done();
+    it('at least has a single .entry element within .feed container', function() {
+      expect($('.feed .entry').length).toBeGreaterThan(0);
     });
   });
 
@@ -114,20 +111,20 @@ $(function() {
    */
   describe('New Feed Selection', function() {
 
-    var content = $('.feed').text();
+    var content;
     beforeEach(function(done) {
-      loadFeed(1, function() {
-        done();
+      loadFeed(0, function() {
+        content = $('.feed').text();
+        loadFeed(1, done);
       });
     });
 
     /* Test ensures when a new feed is loaded
     * by the loadFeed function that the content actually changes.
     */
-    it('when a new feed is loaded by the loadFeed function the content changes', function(done) {
-      var newcontent = $('.feed').text();
-      expect(content).not.toEqual(newcontent);
-      done();
+    it('when a new feed is loaded by the loadFeed function the content changes', function() {
+      var newContent = $('.feed').text();
+      expect(content).not.toEqual(newContent);
     });
   });
 }());
