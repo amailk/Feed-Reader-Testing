@@ -5,7 +5,8 @@ $(function() {
 	describe('RSS Feeds', function() {
 
 		/* Tests to make sure that the allFeeds variable
-     * has been defined and that it is not empty.
+     * has been defined and its not empty(length is
+     * not equal to 0)
 		 */
 		it('are defined', function() {
 			expect(allFeeds).toBeDefined();
@@ -49,8 +50,7 @@ $(function() {
 
 	/* Tests functionality related the menu
    */
-	describe('The menu', function() {
-
+	describe('The Menu', function() {
     var isMenuHidden = function() {
 			return $('body').hasClass('menu-hidden');
 		};
@@ -62,7 +62,7 @@ $(function() {
 			expect(isMenuHidden()).toBe(true);
 		});
 
-		/* Test that ensures the menu changes.
+		/* Test ensures the menu changes.
 		 * Tests visibility when the menu icon is clicked.
 		 * Checks whether the menu displays when
 		 * clicked and does it hide when clicked again.
@@ -88,8 +88,6 @@ $(function() {
 	});
 
 
-
-
   /* Tests the initial state.
    */
 	describe('Initial Entries', function() {
@@ -110,11 +108,11 @@ $(function() {
 		});
 	});
 
+
 	/* Tests the funcionality related to the new feed selection
    */
 	describe('New Feed Selection', function() {
 		var content = $('.feed').text();
-
 		beforeEach(function(done) {
 			loadFeed(1, function() {
 				done();
@@ -123,7 +121,6 @@ $(function() {
 
   /* Test ensures when a new feed is loaded
  	 * by the loadFeed function that the content actually changes.
- 	 * Remember, loadFeed() is asynchronous.
  	 */
 		it('when a new feed is loaded by the loadFeed function the content changes', function(done) {
 			var newcontent = $('.feed').text();
