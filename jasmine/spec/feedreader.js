@@ -59,7 +59,7 @@ $(function() {
      * hidden by default.
      */
     it('element is hidden by default', function() {
-      expect(isMenuHidden()).toBe(true);
+      expect(isMenuHidden()).toBeTruthy();
     });
 
     /* Test ensures the menu changes.
@@ -68,22 +68,22 @@ $(function() {
      * clicked and does it hide when clicked again.
      */
     it('changes visibility when menu icon is clicked', function() {
-      expect(isMenuHidden()).toBe(true);
+      expect(isMenuHidden()).toBeTruthy();
       $('.menu-icon-link').click();
-      expect(isMenuHidden()).toBe(false);
+      expect(isMenuHidden()).toBeFalsy();
       $('.menu-icon-link').click();
-      expect(isMenuHidden()).toBe(true);
+      expect(isMenuHidden()).toBeTruthy();
     });
 
     /* Test that ensures that the menu hides when
      * you click on a feed item.
      */
     it('hides after a feed item is clicked', function() {
-      expect(isMenuHidden()).toBe(true);
+      expect(isMenuHidden()).toBeTruthy();
       $('.menu-icon-link').click();
-      expect(isMenuHidden()).toBe(false);
+      expect(isMenuHidden()).toBeFalsy();
       $('ul.feed-list li:first-child a').click();
-      expect(isMenuHidden()).toBe(true);
+      expect(isMenuHidden()).toBeTruthy();
     });
   });
 
